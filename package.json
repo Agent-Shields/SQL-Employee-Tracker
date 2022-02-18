@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "dotenv": "^16.0.0",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.3"
+  },
+  "name": "sql-employee-tracker",
+  "description": "used node.js, inquirer and MySQL to build CLI app to manage company's employee db.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Agent-Shields/SQL-Employee-Tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Agent-Shields/SQL-Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/Agent-Shields/SQL-Employee-Tracker#readme"
+}
