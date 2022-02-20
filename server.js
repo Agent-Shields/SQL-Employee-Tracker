@@ -14,19 +14,47 @@ const questions = [
 
 // function to start asking inquirer questions
 const askQuestions = () => {
-    return inquirer
+    inquirer
     .prompt(questions)
     .then(data => {
-        if (data.toDo === 'View all departments'){
+        if (data.toDo === 'View all departments') {
             const sql = `SELECT * FROM department;`;
 
-            db.query(sql, (err, row) => {
+            db.query(sql, (err, deptTable) => {
                 if (err) {
                     console.log(err)
                     return;
                 }
-                console.table(row)
+                console.table(deptTable);
             })
+        } else if (data.toDo === 'View all roles') {
+            const sql = `SELECT * FROM role`;
+
+            db.query(sql, (err, roleTable) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                console.table(roleTable)
+            })
+        } else if (data.toDo === 'View all employees') {
+            const sql = `SELECT * FROM employee`
+
+            db.query(sql, (err, employeeTable) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                console.table(employeeTable)
+            })
+        } else if (data.toDo === 'Add a department') {
+            
+        } else if (data.toDo === 'Add a role') {
+
+        } else if (data.toDo === 'Add an employee') {
+
+        } else if (data.toDo === 'Update an employee role') {
+
         }
         
     })
