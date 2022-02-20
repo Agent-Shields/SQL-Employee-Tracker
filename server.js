@@ -61,23 +61,22 @@ addDept = () => {
     .prompt(
         {
             type: 'input',
-            name: 'newDeptName',
+            name: 'name',
             message: 'What is the new department name?'
         }
     )
-
-    const sql = `INSERT INTO department (name) VALUES (?)`
-
     // add department to db based off user input
     .then(deptAnswer => {
-        console.log(deptAnswer)
-    //     let params = deptAnswer
-    //     db.query(sql, params, (err, result) => {
-    //         if (err) {
-    //             console.log(err);
-    //         }
+        console.log(deptAnswer.name)
+        const sql = `INSERT INTO department (name) VALUES (?)`
 
-    //     })
+        let params = deptAnswer.name
+        db.query(sql, params, (err, result) => {
+            if (err) {
+                console.log(err);
+            }
+
+        })
     }
     )
 }
