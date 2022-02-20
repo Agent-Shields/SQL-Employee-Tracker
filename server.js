@@ -57,7 +57,29 @@ queryEmployees = () => {
 // sql query to add department
 addDept = () => {
     // get user input for department name
+    inquirer
+    .prompt(
+        {
+            type: 'input',
+            name: 'newDeptName',
+            message: 'What is the new department name?'
+        }
+    )
+
+    const sql = `INSERT INTO department (name) VALUES (?)`
+
     // add department to db based off user input
+    .then(deptAnswer => {
+        console.log(deptAnswer)
+    //     let params = deptAnswer
+    //     db.query(sql, params, (err, result) => {
+    //         if (err) {
+    //             console.log(err);
+    //         }
+
+    //     })
+    }
+    )
 }
 
 // sql query to add role
@@ -76,6 +98,7 @@ addEmployee = () => {
 updateRole = () => {
 
 }
+
 // function to start asking inquirer questions
 const askQuestions = () => {
     inquirer
