@@ -48,13 +48,16 @@ const askQuestions = () => {
                 console.table(employeeTable)
             })
         } else if (data.toDo === 'Add a department') {
-            
+            // get user input for department name
+            // add department to db based off user input
         } else if (data.toDo === 'Add a role') {
-
+            // get user input for role information
+            // add role to db based off user input
         } else if (data.toDo === 'Add an employee') {
-
+            // get user input for employee information
+            // add employee to db based off user input
         } else if (data.toDo === 'Update an employee role') {
-
+            
         }
         
     })
