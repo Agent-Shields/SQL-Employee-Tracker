@@ -5,7 +5,7 @@ The goal of this challenge is to use node.js, inquirer, command table and MySQL 
 https://github.com/Agent-Shields/SQL-Employee-Tracker
 
 ## Walkthrough Video
-<!-- placeholder -->
+https://drive.google.com/file/d/1U1AIkfneiM79ZuaIZiB-P-2usdnWFTzu/view 
 
 ## User Story
 AS A business owner
