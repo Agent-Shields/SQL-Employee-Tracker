@@ -22,7 +22,6 @@ queryDept = () => {
             return;
         }
         console.table(deptTable);
-        return;
     })
 };
 
@@ -36,7 +35,6 @@ queryRole = () => {
             return;
         }
         console.table(roleTable);
-        return;
     })
 };
 
@@ -50,7 +48,6 @@ queryEmployees = () => {
             return;
         }
         console.table(employeeTable);
-        return;
     })
 };
 
@@ -84,8 +81,42 @@ addDept = () => {
 // sql query to add role
 addRole = () => {
     // get user input for role information
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'title',
+            message: 'What is the role title?'
+        },
+        {
+            type: 'input',
+            name: 'salary',
+            message: 'What is the salary of the role?'
+        },
+        {
+            type: 'input',
+            name: 'department_id',
+            message: 'What department does this role belong to?'
+        }
+    ]
+    )
+
     // add role to db based off user input
+        .then(roleAnswer => {
+            console.log(roleAnswer)
+            const sql = `INSERT INTO role (title, salary, department_id) VALUES (?,?,?)`
+
+            let params = [roleAnswer.title, roleAnswer.salary, roleAnswer.department_id]
+            db.query(sql, params, (err, result) => {
+                if (err) {
+                    console.log(err);
+                }
+
+            })
+        }
+        )
 }
+
 
 // sql query to add employee
 addEmployee = () => {
@@ -117,15 +148,19 @@ const askQuestions = () => {
             case 'View all employees':
                 queryEmployees();
                 break;
+
             case 'Add a department':
                 addDept();
                 break;
+
             case 'Add a role':
                 addRole();
                 break;
+
             case 'Add an employee':
                 addEmployee();
                 break;
+
             case 'Update an employee role':
                 updateRole();
                 break;
