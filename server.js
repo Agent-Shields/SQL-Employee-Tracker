@@ -1,6 +1,7 @@
 const db = require('./db/connection');
 const inquirer = require('inquirer');
 const cTable = require('console.table');
+const { listenerCount } = require('./db/connection');
 
 // questions to be asked in the CLI
 const questions = [
@@ -165,7 +166,34 @@ addEmployee = () => {
 
 // sql query to update employee role
 updateRole = () => {
+  // get user input for updated employee role
+  inquirer
+  .prompt([
+     {
+         type: 'input',
+         name: 'role_id',
+         message: 'What is the updated role id of the employee?'
+     },
+     {
+         type: 'input',
+         name: 'id',
+         message: "What is the employee's id?"
+     }
+    ]
+  )
 
+  // update employee role in DB based off user input
+  .then(employeeInfo => {
+      let sql = `UPDATE employee SET role_id = ? WHERE id = ?`
+      let params = [employeeInfo.role_id, employeeInfo.id];
+
+      db.query(sql, params, (err, result) => {
+          if (err) {
+              console.log(err)
+          }
+          console.log('Updated employee')
+      })
+  })
 }
 
 // function to start asking inquirer questions

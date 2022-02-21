@@ -1,5 +1,11 @@
 # SQL-Employee-Tracker
-used node.js, inquirer and MySQL to build CLI app to manage company's employee db.
+The goal of this challenge is to use node.js, inquirer, command table and MySQL to build CLI app to manage company's employee database.
+
+## GitHub repository
+https://github.com/Agent-Shields/SQL-Employee-Tracker
+
+## Walkthrough Video
+<!-- placeholder -->
 
 ## User Story
 AS A business owner
@@ -32,6 +38,3 @@ THEN I am prompted to enter the employee’s first name, last name, role, and ma
 
 WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database
-
-## Walkthrough Video
-<!-- placeholder -->
