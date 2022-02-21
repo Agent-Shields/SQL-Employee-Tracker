@@ -206,7 +206,8 @@ const askQuestions = () => {
         switch (choices) {
             case 'View all departments':
                 queryDept();
-                break;
+                restartQuestions();
+                // break;
 
             case 'View all roles':
                 queryRole();
