@@ -1,7 +1,6 @@
 const db = require('./db/connection');
 const inquirer = require('inquirer');
 const cTable = require('console.table');
-const { listenerCount } = require('./db/connection');
 
 // questions to be asked in the CLI
 const questions = [
@@ -13,6 +12,26 @@ const questions = [
     }
 ]
 
+// restart asking questions or exit
+const restartPrompt = () => {
+    inquirer.prompt(
+        {
+            type: 'confirm',
+            name: 'restart',
+            message: 'Would you like to do anything else?'
+        }
+    )
+    .then(answer => {
+        if (answer.restart) {
+            return askQuestions();
+        }
+        else {
+        console.log('Goodbye');
+        return;
+        }
+    })
+}
+
 // sql query to view all departments
 queryDept = () => {
     const sql = `SELECT * FROM department;`;
@@ -23,6 +42,7 @@ queryDept = () => {
             return;
         }
         console.table(deptTable);
+        restartPrompt();
     })
 };
 
@@ -36,6 +56,7 @@ queryRole = () => {
             return;
         }
         console.table(roleTable);
+        restartPrompt();
     })
 };
 
@@ -49,6 +70,7 @@ queryEmployees = () => {
             return;
         }
         console.table(employeeTable);
+        restartPrompt();
     })
 };
 
@@ -73,7 +95,7 @@ addDept = () => {
             if (err) {
                 console.log(err);
             }
-
+            restartPrompt();
         })
     }
     )
@@ -112,7 +134,7 @@ addRole = () => {
                 if (err) {
                     console.log(err);
                 }
-
+                restartPrompt();
             })
         }
         )
@@ -138,12 +160,12 @@ addEmployee = () => {
             {
                 type: 'input',
                 name: 'role_id',
-                message: "What is the employee's role id?"
+                message: "What is the employee's role?"
             },
             {
                 type: 'input',
                 name: 'manager_id',
-                message: "What Manager ID does this employee belong to?"
+                message: "Who is the employee's manager?"
             }
         ]
     )
@@ -158,7 +180,7 @@ addEmployee = () => {
             if (err) {
                 console.log(err);
             }
-
+            restartPrompt();
         })
     }
     )
@@ -191,7 +213,8 @@ updateRole = () => {
           if (err) {
               console.log(err)
           }
-          console.log('Updated employee')
+          console.log('Updated employee');
+          restartPrompt();
       })
   })
 }
@@ -206,8 +229,7 @@ const askQuestions = () => {
         switch (choices) {
             case 'View all departments':
                 queryDept();
-                restartQuestions();
-                // break;
+                break;
 
             case 'View all roles':
                 queryRole();
