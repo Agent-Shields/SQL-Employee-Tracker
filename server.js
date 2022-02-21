@@ -121,7 +121,46 @@ addRole = () => {
 // sql query to add employee
 addEmployee = () => {
     // get user input for employee information
+    inquirer
+    .prompt(
+        [
+            {
+                type: 'input',
+                name: 'first_name',
+                message: "What is the employee's first name?"
+            },
+            {
+                type: 'input',
+                name: 'last_name',
+                message: "What is the employee's last name?"
+            },
+            {
+                type: 'input',
+                name: 'role_id',
+                message: "What is the employee's role id?"
+            },
+            {
+                type: 'input',
+                name: 'manager_id',
+                message: "What Manager ID does this employee belong to?"
+            }
+        ]
+    )
+
     // add employee to db based off user input
+    .then(employeeAnswer => {
+        console.log(employeeAnswer)
+        const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)`
+
+        let params = [employeeAnswer.first_name, employeeAnswer.last_name, employeeAnswer.role_id, employeeAnswer.manager_id]
+        db.query(sql, params, (err, result) => {
+            if (err) {
+                console.log(err);
+            }
+
+        })
+    }
+    )
 }
 
 // sql query to update employee role
